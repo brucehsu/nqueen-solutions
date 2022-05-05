@@ -6,8 +6,13 @@ describe('findNQueenSolution()', () => {
       const given = 4
   
       const expected = [[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]
+
+      const solutions = findNQueenSolution(given)
   
-      expect(findNQueenSolution(given)).toEqual(expected)
+      expect(solutions.length).toEqual(expected.length)
+      expected.forEach((expectedPerm) => {
+        expect(solutions).toContainEqual(expectedPerm)
+      })
     })
 
     test('Given a 1x1 board with queens, returns one solution', async () => {
@@ -22,11 +27,15 @@ describe('findNQueenSolution()', () => {
 
 describe('getPermutationsFromArray()', () => {
   test('Given [1] as head and [2, 3], should return a set of permutations of it', async () => {
-    const permutations = getPermutationsFromArray([1], [2, 3], [])
+    const permutations = new Array()
+    getPermutationsFromArray([1, 2, 3], 3, permutations)
 
-    const expected = [[1, 2, 3], [1, 3, 2]]
+    const expected = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
 
-    expect(permutations).toEqual(expected)
+    expect(permutations.length).toEqual(expected.length)
+    expected.forEach((expectedPerm) => {
+      expect(permutations).toContainEqual(expectedPerm)
+    })
   })
 })
 

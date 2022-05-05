@@ -20,7 +20,7 @@ function formatSolutions(solutions, size) {
   })
 }
 
-// given: size n
+// given: size
 // returns: permutations[][]
 function getAllPermutations(size) {
     const permutations = new Array()
@@ -29,29 +29,26 @@ function getAllPermutations(size) {
         board.push(i);
     }
 
-    board.forEach((head, index) => {
-      getPermutationsFromArray([head], [...board.slice(0, index), ...board.slice(index + 1)], permutations)
-    })
+    getPermutationsFromArray(board, size, permutations)
 
     return permutations
 }
 
-// given: head int[], tail int[]
-// returns: newPermutations int[]
-function getPermutationsFromArray (head, tail, permutations) {
-  let newPermutations = [...permutations]
-  if (tail.length === 0) {
-    permutations.push(head)
-    return permutations
+// given: array int[], size
+// returns: permutaions int[]
+function getPermutationsFromArray (array, size, permutations) {
+  if (size === 1) {
+    permutations.push([...array])
   }
 
-  tail.forEach((element, index) => {
-    const newHead = [...head, element]
-    const newTail = [...tail.slice(0, index), ...tail.slice(index + 1)]
-    getPermutationsFromArray(newHead, newTail, permutations)
-  })
-
-  return permutations
+  for (let i = 0; i < size; i++) {
+    getPermutationsFromArray(array, size - 1, permutations)
+    if (size % 2 == 0) {
+      [array[i], array[size - 1]] = [array[size - 1], array[i]]
+    } else {
+      [array[0], array[size - 1]] = [array[size - 1], array[0]]
+    }
+  }
 }
 
 // given: a board with queens, encoded in the form queensBoard[row] => col
