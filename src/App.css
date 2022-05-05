@@ -28,6 +28,16 @@
   color: #61dafb;
 }
 
+.Chess-block {
+  display: inline-block;
+  border-color: black;
+  border: solid 1px;
+  width: 30px;
+  height: 30px;
+  margin: auto;
+  text-align: center;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

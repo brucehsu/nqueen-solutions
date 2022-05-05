@@ -1,4 +1,5 @@
 import React from 'react';
+import SolutionRow from './SolutionRow';
 
 class SolutionBlock extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class SolutionBlock extends React.Component {
     return (
       <div>
           {solution.map((row, idx) => {
-              return <div key={"row_" + idx}>{row}</div>
+              return <SolutionRow key={"row_" + idx} row={row}></SolutionRow>
           })}
           <hr />
       </div>
