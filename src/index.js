@@ -1,5 +1,12 @@
-const {findNQueenSolution} = require('./nqueen')
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-for( let i = 1 ; i <= 9 ; i++) {
-    console.log(i + ":" + findNQueenSolution(i).length)
-}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
