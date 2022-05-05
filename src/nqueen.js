@@ -23,14 +23,14 @@ function formatSolutions(solutions, size) {
 // given: size n
 // returns: permutations[][]
 function getAllPermutations(size) {
-    const permutations = [];
+    const permutations = new Array()
     const board = []
     for (let i = 0; i < size; i++) {
         board.push(i);
     }
 
     board.forEach((head, index) => {
-      permutations.push(...(getPermutationsFromArray([head], [...board.slice(0, index), ...board.slice(index + 1)], [])))
+      getPermutationsFromArray([head], [...board.slice(0, index), ...board.slice(index + 1)], permutations)
     })
 
     return permutations
@@ -41,17 +41,17 @@ function getAllPermutations(size) {
 function getPermutationsFromArray (head, tail, permutations) {
   let newPermutations = [...permutations]
   if (tail.length === 0) {
-    newPermutations.push(head)
-    return newPermutations
+    permutations.push(head)
+    return permutations
   }
 
   tail.forEach((element, index) => {
     const newHead = [...head, element]
     const newTail = [...tail.slice(0, index), ...tail.slice(index + 1)]
-    newPermutations = getPermutationsFromArray(newHead, newTail, newPermutations)
+    getPermutationsFromArray(newHead, newTail, permutations)
   })
 
-  return newPermutations
+  return permutations
 }
 
 // given: a board with queens, encoded in the form queensBoard[row] => col
